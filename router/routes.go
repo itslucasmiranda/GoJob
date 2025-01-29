@@ -2,38 +2,18 @@ package router
 
 import (
 	"net/http"
-
 	"github.com/gin-gonic/gin"
 )
 
 func initializeRoutes(router *gin.Engine) { // *gin.Engine é um ponteiro para a instância do gin.Engine que é de forma didática um servidor web do
 	v1 := router.Group("/api/v1")
 	{
-		// show all openings, que são as vagas de emprego
-		v1.GET("/opening", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "GET Opening",
-			})
-		})
-		v1.POST("/opening", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "POST Opening",
-			})
-		})
-		v1.DELETE("/opening", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "DELETE Opening",
-			})
-		})
-		v1.PUT("/opening", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "PUT Opening",
-			})
-		})
-		v1.GET("/openings", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "GET Openings",
-			})
-		})
+		//Aqui é onde estabelecemos as rotas vindas do arquivo handler.go que é responsável por registrar as nossas rotas
+		v1.GET("/opening", handlers ... :  handler.ShowOpeningHandler)
+		v1.POST("/opening", handlers ... : handler.CreateOpeningHandler)
+		v1.DELETE("/opening", handlers ... : handler.DeleteOpeningHandler)
+		v1.PUT("/opening", handlers ... : handler.UpdateOpeningHandler)
+		v1.GET("/openings", handlers ... : handler.ListOpeningsHandler)
+
 	}
 }
