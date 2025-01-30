@@ -1,19 +1,27 @@
 package router
 
 import (
-	"net/http"
 	"github.com/gin-gonic/gin"
+	"github.com/itslucasmiranda/gojob/docs"
+	"github.com/itslucasmiranda/gojob/handler"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-func initializeRoutes(router *gin.Engine) { // *gin.Engine é um ponteiro para a instância do gin.Engine que é de forma didática um servidor web do
-	v1 := router.Group("/api/v1")
+func initializeRoutes(router *gin.Engine) {
+	// Initialize Handler
+	handler.InitializeHandler()
+	basePath := "/api/v1"
+	docs.SwaggerInfo.BasePath = basePath
+	v1 := router.Group(basePath)
 	{
-		//Aqui é onde estabelecemos as rotas vindas do arquivo handler.go que é responsável por registrar as nossas rotas
-		v1.GET("/opening", handlers ... :  handler.ShowOpeningHandler)
-		v1.POST("/opening", handlers ... : handler.CreateOpeningHandler)
-		v1.DELETE("/opening", handlers ... : handler.DeleteOpeningHandler)
-		v1.PUT("/opening", handlers ... : handler.UpdateOpeningHandler)
-		v1.GET("/openings", handlers ... : handler.ListOpeningsHandler)
+		v1.GET("/opening", handler.ShowOpeningHandler)
+		v1.POST("/opening", handler.CreateOpeningHandler)
+		v1.DELETE("/opening", handler.DeleteOpeningHandler)
+		v1.PUT("/opening", handler.UpdateOpeningHandler)
+		v1.GET("/openings", handler.ListOpeningsHandler)
 
 	}
+	// Initialize Swagger
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 }
