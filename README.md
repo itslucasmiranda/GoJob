@@ -6,8 +6,8 @@ O projeto segue uma estrutura de pacote moderna para manter a base de código or
 
 ## Características
 
-- Introdução ao Golang e construção de APIs modernas  
-- Configuração do ambiente de desenvolvimento para criação da API  
+- Um começo ao Golang e construção de uma primeira APIs moderna e complexa 
+- Configuração do ambiente de desenvolvimento   
 - Usando **Go-Gin** como um roteador para gerenciamento de rotas  
 - Implementando **SQLite** como banco de dados para a API  
 - Usando **GoORM** para comunicação com o banco de dados  
