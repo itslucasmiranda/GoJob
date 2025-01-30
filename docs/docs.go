@@ -18,7 +18,7 @@ const docTemplate = `{
             "get": {
                 "description": "Show a job opening",
                 "consumes": [
-                    "application/json"
+                    "application/json" 
                 ],
                 "produces": [
                     "application/json"

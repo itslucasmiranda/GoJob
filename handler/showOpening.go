@@ -3,8 +3,8 @@ package handler
 import (
 	"net/http"
 
-	"github.com/arthur404dev/gopportunities/schemas"
 	"github.com/gin-gonic/gin"
+	"github.com/itslucasmiranda/gojob/schemas"
 )
 
 // @BasePath /api/v1
