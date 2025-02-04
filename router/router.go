@@ -1,24 +1,23 @@
 package router
 
 import (
-	"os"
+	"os" //variáveis de ambiente, como por ex a porta do serviodor
 
-	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin" //gerencia rotas e requisições HTTP
 )
 
 func Initialize() {
-	// Initialize Router
+	// Inicia o servidor (router) HTTP
 	router := gin.Default()
 
-	// Initialize Routes
+	// Inicia as rotas definidas no arquivo de rotas da API
 	initializeRoutes(router)
 
-	// Get the port from the environment
+	// define a porta em que rodará o servidor
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
 	}
 
-	// Run the server
 	router.Run("0.0.0.0:" + port)
 }

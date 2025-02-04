@@ -2,8 +2,8 @@
 package docs
 
 import "github.com/swaggo/swag"
-
-const docTemplate = `{
+//define a template swagger
+const docTemplate = `{ 
     "schemes": {{ marshal .Schemes }},
     "swagger": "2.0",
     "info": {

@@ -6,6 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// modelo de dados gorm.Model, uma estrutura base fornecida pela GORM. Contêm pacotes uteis para rastrear a criação, atualização e exclusão.
 type Opening struct {
 	gorm.Model
 	Role     string
@@ -16,6 +17,7 @@ type Opening struct {
 	Salary   int64
 }
 
+// estrutura já formata que o cliente recebe ao interagir com as vagas na API
 type OpeningResponse struct {
 	ID        uint      `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`

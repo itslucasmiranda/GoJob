@@ -1,5 +1,5 @@
 definitions:
-  handler.CreateOpeningRequest:
+  handler.CreateOpeningRequest: #define os dados esperados no corpo da requisição
     properties:
       company:
         type: string
@@ -14,14 +14,14 @@ definitions:
       salary:
         type: integer
     type: object
-  handler.CreateOpeningResponse:
+  handler.CreateOpeningResponse: #a estrutura de resposta ao criar uma vaga
     properties:
       data:
         $ref: '#/definitions/schemas.OpeningResponse'
       message:
         type: string
     type: object
-  handler.DeleteOpeningResponse:
+  handler.DeleteOpeningResponse: #a estrutura dde resposta ao deletar uma vaga
     properties:
       data:
         $ref: '#/definitions/schemas.OpeningResponse'

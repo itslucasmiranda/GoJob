@@ -2,11 +2,12 @@ package handler
 
 import "fmt"
 
+//retorna que um determinado parametro é obrigatório. Recebe dois argumentos, name (role) e type (string), por exemplo.
 func errParamIsRequired(name, typ string) error {
 	return fmt.Errorf("param: %s (type: %s) is required", name, typ)
 }
 
-// CreateOpening
+// CreateOpening, define os dados necessários para a criação de uma vaga de emprego. Cada campo corresponde a um atributo da vaga.
 
 type CreateOpeningRequest struct {
 	Role     string `json:"role"`
@@ -17,6 +18,7 @@ type CreateOpeningRequest struct {
 	Salary   int64  `json:"salary"`
 }
 
+//A funçaõ validate verifica se os campos obrigatórios da requisição estão presentes e são validos
 func (r *CreateOpeningRequest) Validate() error {
 	if r.Role == "" && r.Company == "" && r.Location == "" && r.Remote == nil && r.Salary <= 0 {
 		return fmt.Errorf("request body is empty or malformed")

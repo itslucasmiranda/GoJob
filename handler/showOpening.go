@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/itslucasmiranda/gojob/schemas"
+	"github.com/itslucasmiranda/gojob/schemas" //importa o modelo da vaga de emprego e armazena no db
 )
 
 // @BasePath /api/v1
@@ -19,14 +19,14 @@ import (
 // @Failure 400 {object} ErrorResponse
 // @Failure 404 {object} ErrorResponse
 // @Router /opening [get]
-func ShowOpeningHandler(ctx *gin.Context) {
-	id := ctx.Query("id")
+func ShowOpeningHandler(ctx *gin.Context) { //represeta o contextoda requisição HTTP
+	id := ctx.Query("id") //obtêm o parametro id da URL
 	if id == "" {
 		sendError(ctx, http.StatusBadRequest, errParamIsRequired("id", "queryParameter").Error())
 		return
 	}
-	opening := schemas.Opening{}
-	if err := db.First(&opening, id).Error; err != nil {
+	opening := schemas.Opening{}                         //cria uma variável para armazenar os dados da vaga encontrada
+	if err := db.First(&opening, id).Error; err != nil { //busca a vaga no banco pelo id informado
 		sendError(ctx, http.StatusNotFound, "opening not found")
 		return
 	}

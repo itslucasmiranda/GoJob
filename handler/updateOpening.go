@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"net/http"
+	"net/http" //defini os códigos de status para as requisiçõs HTTP
 
 	"github.com/gin-gonic/gin"
 	"github.com/itslucasmiranda/gojob/schemas"
@@ -21,25 +21,25 @@ import (
 // @Failure 404 {object} ErrorResponse
 // @Failure 500 {object} ErrorResponse
 // @Router /opening [put]
-func UpdateOpeningHandler(ctx *gin.Context) {
-	request := UpdateOpeningRequest{}
+func UpdateOpeningHandler(ctx *gin.Context) { //contexto da requisição
+	request := UpdateOpeningRequest{} //cria uma instância da estrutura que representa os dados recebidos no corpo da requisição para atualizar a vaga
 
-	ctx.BindJSON(&request)
+	ctx.BindJSON(&request) //converte os dados recebidos para a estrutura JSON recebido para a estrutura UpdateOpeningRequest
 
 	if err := request.Validate(); err != nil {
-		logger.Errorf("validation error: %v", err.Error())
+		logger.Errorf("validation error: %v", err.Error()) //verifica se os campos obrigatórios estão presentes e sõa válidos
 		sendError(ctx, http.StatusBadRequest, err.Error())
 		return
 	}
 
-	id := ctx.Query("id")
+	id := ctx.Query("id") //obtêm o parametro id da URL
 	if id == "" {
 		sendError(ctx, http.StatusBadRequest, errParamIsRequired("id", "queryParameter").Error())
 		return
 	}
-	opening := schemas.Opening{}
+	opening := schemas.Opening{} //cria uma variável para armazenar os dados das vagas
 
-	if err := db.First(&opening, id).Error; err != nil {
+	if err := db.First(&opening, id).Error; err != nil { //utiliza o GORM para buscar vagas no banco pelo id
 		sendError(ctx, http.StatusNotFound, "opening not found")
 		return
 	}
